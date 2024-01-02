@@ -12,7 +12,8 @@ phases:
     commands:
       - echo Creating production build...
       - npm run build
-      - bucket_name="elasticbeanstalk-us-east-2-1254896325"
+      - |
+        bucket_name="elasticbeanstalk-us-east-2-1254896325"
         if aws s3 ls "s3://$bucket_name" 2>&1 | grep -q 'NoSuchBucket'; then
           echo "Bucket Does not exist. Creating bucket $bucket_name"
           aws s3 mb "s3://$bucket_name"
