@@ -10,7 +10,7 @@ import { setAvatarRoute } from "../utils/APIRoutes";
 
 const SetAvatar = () => {
   // it is opensource and free API
-  const api = process.env.AVATAR_API;
+  const api = "https://api.multiavatar.com/123456765";
 
   const [avatars, setAvatars] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
