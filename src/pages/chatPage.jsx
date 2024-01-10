@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import apiClient from "../utils/common";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { allUsersRoute } from "../utils/APIRoutes";
@@ -32,7 +32,9 @@ const ChatPage = () => {
     async function fetchData() {
       if (currentUser) {
         if (currentUser.isAvatarImageSet) {
-          const data = await axios.get(`${allUsersRoute}/${currentUser._id}`);
+          const data = await apiClient.get(
+            `${allUsersRoute}/${currentUser._id}`
+          );
           setContacts(data.data);
         } else {
           navigate("/setAvatar");

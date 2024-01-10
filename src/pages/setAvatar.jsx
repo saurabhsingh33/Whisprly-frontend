@@ -4,7 +4,7 @@ import styled from "styled-components";
 import loader from "../assets/loader.gif";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
+import apiClient from "../utils/common";
 import { Buffer } from "buffer";
 import { setAvatarRoute } from "../utils/APIRoutes";
 
@@ -30,7 +30,7 @@ const SetAvatar = () => {
       const data = [];
       for (let i = 0; i < 4; i++) {
         try {
-          const image = await axios.get(
+          const image = await apiClient.get(
             `${api}/${Math.round(Math.random() * 1000)}`
           );
 
@@ -71,7 +71,7 @@ const SetAvatar = () => {
       toast.error("Please select an Avatar", toastOptions);
     } else {
       const user = JSON.parse(localStorage.getItem("whisprly-user"));
-      const { data } = await axios.post(`${setAvatarRoute}/${user._id}`, {
+      const { data } = await apiClient.post(`${setAvatarRoute}/${user._id}`, {
         image: avatars[selectedAvatar],
       });
 

@@ -4,7 +4,7 @@ import { getAllMessagesRoute, sendMessageRoute } from "../utils/APIRoutes";
 import Logout from "./logout";
 import ChatInput from "./chatInput";
 // import Messages from "./messages";
-import axios from "axios";
+import apiClient from "../utils/common";
 import { useSocket } from "../context/socketProvider";
 
 const ChatContainer = ({ currentChat, currentUser }) => {
@@ -12,7 +12,7 @@ const ChatContainer = ({ currentChat, currentUser }) => {
   const { sendMessage, messages } = useSocket();
   useEffect(() => {
     async function fetchData() {
-      const res = await axios.post(getAllMessagesRoute, {
+      const res = await apiClient.post(getAllMessagesRoute, {
         from: currentUser._id,
         to: currentChat._id,
       });
@@ -40,7 +40,7 @@ const ChatContainer = ({ currentChat, currentUser }) => {
       message: msg,
     };
     sendMessage(body);
-    await axios.post(sendMessageRoute, body);
+    await apiClient.post(sendMessageRoute, body);
   };
   return (
     <>
