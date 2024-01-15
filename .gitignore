@@ -18,7 +18,13 @@ package-lock.json
 .env.development.local
 .env.test.local
 .env.production.local
+.ebextensions
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
